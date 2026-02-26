@@ -40,3 +40,22 @@ function moveSlide(direction) {
 function sendMessage(){
     window.alert("Message sent")
 }
+
+function mode() {
+    const body = document.body;
+    
+    // Hozzáadja vagy elveszi a 'light-theme' osztályt
+    body.classList.toggle('light-theme');
+    
+    // Elmentjük a választást, hogy frissítés után ne ugorjon vissza
+    const isLight = body.classList.contains('light-theme');
+    localStorage.setItem('theme-mode', isLight ? 'light' : 'dark');
+}
+
+// Ellenőrizzük az oldal betöltésekor, hogy mit mentettünk el legutóbb
+window.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('theme-mode');
+    if (savedTheme === 'light') {
+        document.body.classList.add('light-theme');
+    }
+});

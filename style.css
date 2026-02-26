@@ -47,6 +47,24 @@
   --z-fixed: 100;
 }
 
+/* Világos téma színei */
+body.light-theme {
+    --body-color: hsl(30, 100%, 98%);    
+    --container-color: hsl(0, 0%, 90%);
+    --second-color: hsl(30, 100%, 0%);     
+    --black-color: hsl(0, 0%, 100%);
+    
+}
+body.light-theme .button:hover {
+    background-color: var(--first-color); /* Hogy legyen kontraszt a fehér szöveg alatt */
+    color: #ffffff !important;
+    box-shadow: 0 8px 32px hsl(0, 0%, 0%);
+}
+
+.nav__link[onclick] {
+    cursor: pointer;
+}
+
 /*========== Responsive typography ==========*/
 @media screen and (min-width: 1150px) {
   :root {
@@ -172,7 +190,7 @@ img {
     left:0;
     width: 100%;
     background-color: var(--black-color);
-    box-shadow:0 8px 16px hsla(0,0%,0%, 5);
+    box-shadow:0 16px 32px hsla(0,0%,0%, 5);
     border-radius: 0 0 1.5rem;
     transition: top .4s; 
   }
@@ -400,6 +418,55 @@ img {
   width: 200px;
 }
 
+
+/*szalag animáció*/
+:root {
+  --gap: 1.5rem; /* A skillek közötti távolság */
+  --duration: 25s; /* Az animáció hossza */
+}
+
+.skills__marquee {
+  display: flex; /* A két lista egymás mellé kerül */
+  overflow: hidden;
+  user-select: none;
+  gap: var(--gap);
+  width: 100%;
+  padding-block: 1rem;
+  /* Elhalványuló szélek */
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.skills__content {
+  flex-shrink: 0; /* Megakadályozza, hogy a listák összenyomódjanak */
+  display: flex;
+  justify-content: space-around;
+  gap: var(--gap);
+  min-width: 100%;
+  animation: scroll var(--duration) linear infinite;
+}
+
+/* Megállítja az animációt hover esetén */
+.skills__marquee:hover .skills__content {
+  animation-play-state: paused;
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    /* Pontos eltolás a hézaggal együtt a zökkenőmentes átmenetért */
+    transform: translateX(calc(-100% - var(--gap)));
+  }
+}
+
+/* Alapstílus a listának (ha még nem lenne) */
+.about__items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
 /*=============== PROJECTS ===============*/
 /* Mobil-első alapbeállítás (Slider) */
 #projects__wrapper{
@@ -585,11 +652,11 @@ footer{
     display: none; /* Desktopon nincs szükség a nyilakra */
   }
 
-  .home__container,
-  .about__container{
+  .home__container{
     grid-template-columns: repeat(2, 350px);
     justify-content: center;
   }
+.about__container{grid-template-columns: repeat(1, 70%);}
 
   .home__data{
     text-align:initial;
