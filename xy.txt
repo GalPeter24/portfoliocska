@@ -1,0 +1,11 @@
+js
+<i class="ri-javascript-fill"></i>
+html
+<i class="ri-html5-fill"></i>
+css
+<i class="ri-css3-fill"></i>
+py
+<i class="fa-brands fa-python"></i>
+c#
+
+

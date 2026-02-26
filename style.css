@@ -1,0 +1,641 @@
+/*=============== GOOGLE FONTS ===============*/
+@import url("https://fonts.googleapis.com/css2?family=Unbounded:wswapght@200..900&display=");
+@import url('https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@100..900&family=Bungee&family=Comic+Relief:wght@400;700&family=Federant&family=Unbounded:wght@200..900&display=swap');
+
+/*=============== VARIABLES CSS ===============*/
+:root {
+  --header-height: 3.5rem;
+
+  /*========== Colors ==========*/
+  /* Color mode HSL(hue, saturation, lightness)
+      Change favorite color:
+      Default Cyan: hsl(180, 80%, 48%)
+      Blue: hsl(220, 90%, 64%) - Pink: hsl(300, 70%, 64%)
+      Green: hsl(110, 70%, 64%) - Purple: hsl(255, 70%, 64%)
+      Orange: hsl(15, 80%, 64%) - Red: hsl(358, 80%, 64%)
+      For more colors visit: https://htmlcolorcodes.com/
+      -> Choose any color 
+      -> Copy the color mode (HSL)
+  */
+  --hue: 180;
+  --first-color: hsla(32, 90%, 49%, 0.877);
+  --first-color-alt: hsl(var(--hue), 80%, 44%);
+  --second-color: hsla(180, 93%, 63%, 0.918);
+  --black-color: hsl(var(--hue), 4%, 8%);
+  --gray-color: hsl(var(--hue), 4%, 50%);
+  --body-color: hsl(30, 100%, 0%);
+  --container-color: hsl(var(--hue), 8%, 12%);
+
+  /*========== Font and typography ==========*/
+  /*.5rem = 8px | 1rem = 16px ...*/
+  --body-font: "Bungee", sans-serif;
+  --bigger-font-size: 2rem;
+  --h1-font-size: 1.5rem;
+  --h2-font-size: 1.25rem;
+  --h3-font-size: 1rem;
+  --normal-font-size: .938rem;
+  --small-font-size: .813rem;
+
+  /*========== Font weight ==========*/
+  --font-light: 300;
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-semi-bold: 600;
+
+  /*========== z index ==========*/
+  --z-tooltip: 10;
+  --z-fixed: 100;
+}
+
+/*========== Responsive typography ==========*/
+@media screen and (min-width: 1150px) {
+  :root {
+    --bigger-font-size: 3rem;
+    --h1-font-size: 2.25rem;
+    --h2-font-size: 1.5rem;
+    --h3-font-size: 1.25rem;
+    --normal-font-size: 1rem;
+    --small-font-size: .875rem;
+  }
+}
+
+/*=============== BASE ===============*/
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body,
+button,
+input,
+textarea {
+  font: var(--font-light) var(--normal-font-size) var(--body-font);
+}
+
+body {
+  background-color: var(--body-color);
+  color: var(--second-color);
+}
+
+button {
+  outline: none;
+  border: none;
+}
+
+h1, h2, h3, h4 {
+  font-weight: var(--font-semi-bold);
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/*=============== REUSABLE CSS CLASSES ===============*/
+.container {
+  max-width: 1120px;
+  margin-inline: 1.5rem;
+}
+
+.grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.section {
+  padding-block: 5rem 1rem;
+}
+
+.section__title {
+  text-align: center;
+  font-size: var(--h1-font-size);
+  color: var(--first-color);
+  margin-bottom: 1.5rem;
+}
+
+.main {
+  overflow: hidden;
+}
+
+/*=============== HEADER & NAV ===============*/
+.header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--body-color);
+  z-index: var(--z-fixed);
+  transition: box-shadow .4s;
+}
+
+.nav{
+  height: var(--header-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav__logo{
+  color: var(--second-color);
+  font-weight: var(--font-semi-bold);
+  transition: color .4s;
+}
+
+.nav__logo:hover{
+  color: var(--first-color);
+}
+
+.nav__toggle, .nav__close{
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+/* Navigation for mobile devices */
+@media screen and (max-width:1150px) {
+  .nav__menu{
+    position: fixed;
+    top:-120%;
+    left:0;
+    width: 100%;
+    background-color: var(--black-color);
+    box-shadow:0 8px 16px hsla(0,0%,0%, 5);
+    border-radius: 0 0 1.5rem;
+    transition: top .4s; 
+  }
+}
+
+.nav__list{
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.5rem;
+  border: 2px var(--first-color) dotted;
+  padding: 0 20px 0 ;
+}
+
+.nav__link{
+  position: relative;
+  color:var(--second-color);
+  font-size: 20px;
+  /*transition: color .4s, width .4s;*/
+  font-family:"Bitcount Grid Double", system-ui ;
+}
+
+.nav__link::after{
+  content: '';
+  width: 0;
+  height: 2px;
+  background-color: var(--first-color);
+  position: absolute;
+  left: 0;
+  bottom: -.5rem;
+  transition: width .4s;
+}
+
+.nav__link:hover{
+  color: var(--first-color);
+}
+
+/*
+.nav__link:hover::after{
+  width: 100%;
+}
+*/
+
+.nav__close{
+  position: absolute;
+  top : 1rem;
+  right: 1.5rem;
+}
+
+/* Show menu */
+.show-menu{
+  top:0;
+  width: 80%;
+  position: relative;
+  margin: auto;
+}
+
+/* Add shadow header */
+.shadow-header{
+  box-shadow: 0 5px 32px hsla(0, 0%, 0%, 0.5);
+}
+
+/* Active link */
+
+/*=============== HOME ===============*/
+.home__container{
+  row-gap: 4rem;
+  padding-block: 2.5rem 2rem;
+}
+
+.home__content{
+  position: relative;
+  justify-self: center;
+}
+
+.home__image{
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items:flex-start;
+  justify-content: center;
+  border: 5px solid var(--first-color);
+  box-shadow: 0 8px 32px hsla(32, 90%, 49%, .6);
+}
+
+.home__img{
+  width: 200px;
+  transform: scale(1.5) translateY(35px) translateX(-5px);
+}
+
+.home__social{
+  position: absolute;
+  top:0;
+  left: -3rem;
+  display: grid;
+  align-content: center;
+  row-gap:1.5rem;
+}
+
+.home__link{
+  color: var(--first-color);
+  font-size: 2.5rem;
+  transition: transform .4s, color .4s;
+}
+
+.home__link:hover{
+  transform: translateY(-0.5rem);
+  color: var(--second-color);
+}
+.home__data{
+  text-align: center;
+  row-gap: 1rem;
+}
+
+.home__subtitle span{
+  color: var(--first-color);
+}
+
+.home__title{
+  color: var(--first-color);
+  font-size: var(--bigger-font-size);
+}
+
+.home__buttons{
+  display: flex;
+  flex-wrap: wrap;
+  gap:.5rem;
+  justify-content: center;
+  margin: 2rem;
+}
+
+/*=============== BUTTON ===============*/
+.button{
+  display: inline-flex;
+  justify-content: center;
+  background-color: var(--first-color);
+  color:var(--second-color);
+  font-weight: var(--font-medium);
+  padding: 1rem 1.5rem;
+  border-radius: .5rem;
+  transition: box-shadow .4s color .4s;
+}
+
+.button:hover{
+  box-shadow: 0 8px 32px hsla(180, 50%, 50%, 0.7);
+  background-color: black;
+  border: 2px solid var(--second-color);
+}
+
+.button__ghost{
+  background-color: var(--body-color);
+  color: var(--second-color);
+  border: 2px solid var(--first-color);
+}
+.button__ghost:hover{
+  background-color: var(--first-color);
+}
+
+/*=============== ABOUT ===============*/
+.about__container{
+  row-gap: 4rem;
+}
+
+.about__content{
+  display: grid;
+  row-gap: 3rem;
+}
+
+.about__data{
+  text-align: center;
+}
+
+.about__description{
+  margin-bottom: 3rem;
+}
+
+.about__subtitle{
+  display: flex;
+  align-items: center;
+  column-gap: .5rem;
+  font-size: var(--h3-font-size);
+  color: var(--first-color);
+  margin-bottom: 1rem;
+}
+
+.about__items{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .5rem;
+}
+
+.about__item{
+  background-color: var(--first-color);
+  padding: .5rem .75rem;
+  border-radius: 2rem;
+  color: var(--black-color);
+  border: 2px solid var(--body-color);
+  cursor: default;
+  transition: background-color .4s, border-color .4s;
+}
+
+.about__item:hover{
+  background-color: var(--body-color);
+  color: var(--first-color);
+  border-color:var(--first-color);
+}
+
+.about__image{
+  width: 240px;
+  height: 240px;
+  background-color: var(--second-color);
+  border-radius: 1rem;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  justify-self: center;
+  box-shadow: 0 8px 32px hsla(var(--hue), 80%, 50%, .3);
+}
+
+.about__img{
+  width: 200px;
+}
+
+/*=============== PROJECTS ===============*/
+/* Mobil-első alapbeállítás (Slider) */
+#projects__wrapper{
+  position: relative;
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+  max-width: 320px; /* Mobilon ennyire korlátozzuk az ablakot */
+  margin: 0 auto;
+}
+
+.projects__container{
+  overflow: hidden; 
+  width: 100%;
+  border-radius: 1rem;
+}
+
+#slider{
+  display: flex; 
+  transition: transform 0.5s ease-in-out;
+}
+
+.project__card{
+  min-width: 100%; /* Mobilon egy kártya tölti ki a 320px-et */
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 8px 16px hsla(0, 0, 0, .5);
+}
+
+.nav-btn__prev{
+  position: absolute;
+  left: -50px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: yellow;
+}
+
+.nav-btn__next{
+  position: absolute;
+  right: -50px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: yellow;
+}
+
+.projects__data{
+  color: var(--first-color);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: hsla(var(--hue), 0, 0, .5);
+  display: grid;
+  place-content: center;
+  row-gap: 1.5rem;
+  text-align: center;
+  padding: 0 1rem;
+  border-radius: 1rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .4s;
+  backdrop-filter: blur(16px);
+  height: 100%;
+}
+
+.projects__data .button{
+  justify-self: center;
+}
+.projects__img{
+  width: 100%;
+}
+
+.project__card:hover .projects__data{
+  opacity: 1;
+  pointer-events: initial;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.project__description{
+  color: var(--second-color);
+}
+/*=============== RESUME ===============*/
+
+/*=============== CONTACT ===============*/
+.contact__container{
+  row-gap: 4rem;
+}
+
+.contact__form{
+  position: relative;
+  row-gap: 2rem;
+}
+
+.contact__input{
+  width: 100%;
+  background-color: var(--body-color);
+  color: var(--second-color);
+  border: 2px solid var(--first-color);
+  padding: 1rem;
+  outline: none;
+  border-radius: .5rem;
+  font-weight: var(--font-medium);
+}
+
+.contact__input::placeholder{
+  color: hsla(180, 93%, 63%, 0.301);
+  transition: color .4s;
+}
+
+.contact__input:focus::placeholder{
+  color: var(--second-color);
+}
+
+.contact__area{
+  height: 10rem;
+  resize: none;
+}
+
+.contact__form .button{
+  cursor: pointer;
+}
+
+.contact__message{
+  font-size: var(--font-medium);
+}
+
+/*=============== FOOTER ===============*/
+footer{
+  font-size: x-small;
+}
+/*=============== SCROLL BAR ===============*/
+
+/*=============== SCROLL UP ===============*/
+
+/* Show Scroll Up */
+
+/*=============== BREAKPOINTS ===============*/
+/* For small devices */
+@media screen and (min-width:540px) {
+  .home__container,
+  .about__container{
+    grid-template-columns: 400px;
+    justify-content: center;
+  } 
+
+  .home__image,.about__image{
+    width: 240px;
+    height: 240px;
+  }
+
+  .home__img, .about__image{
+    width: 170px;
+  }
+}
+
+/* For medium devices */
+@media screen and (min-width:768px) {
+/* Slider kikapcsolása, Grid visszakapcsolása */
+  #projects__wrapper {
+    max-width: initial;
+    display: block; 
+  }
+
+  #slider {
+    display: grid;
+    grid-template-columns: repeat(2, 350px);
+    gap: 1.5rem;
+    justify-content: center;
+    transform: none !important; /* Letiltjuk a lapozást asztali nézetben */
+  }
+
+  .project__card {
+    min-width: initial;
+  }
+
+  .nav-btn__prev,
+  .nav-btn__next {
+    display: none; /* Desktopon nincs szükség a nyilakra */
+  }
+
+  .home__container,
+  .about__container{
+    grid-template-columns: repeat(2, 350px);
+    justify-content: center;
+  }
+
+  .home__data{
+    text-align:initial;
+  }
+}
+
+/* For large devices */
+@media screen and (min-width: 1150px ) {
+  #slider{
+    grid-template-columns: repeat(3, 350px);
+    row-gap: 1.5rem;
+  }
+  .container{
+    margin-inline: auto;
+  }
+
+  .nav__toggle,
+  .nav__close{
+    display: none;
+  }
+
+  .nav__list{
+    flex-direction: row;
+    column-gap: 4rem;
+  }
+
+  .home__container{
+    grid-template-columns: 400px 480px;
+    justify-content: center;
+  }  
+
+  .about__container{
+    grid-template-columns: 540px 400px;
+    padding-block: 3rem 2rem;
+    column-gap: 3rem;
+  }
+
+  .home__image,.about__image{
+    width: 340px;
+    height: 340px;
+  }
+
+  .home__img, .about__image{
+    width: 270px;
+    transform: scale(1.3) translateY(35px) translateX(-5px);
+  }
+}
+
+/* For 2K resolutions (2048 x 1152, 2048 x 1536) */
