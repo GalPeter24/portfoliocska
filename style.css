@@ -504,7 +504,7 @@ img {
   background: none;
   border: none;
   font-size: 2rem;
-  color: yellow;
+  color:var(--first-color);
 }
 
 .nav-btn__next{
@@ -514,7 +514,7 @@ img {
   background: none;
   border: none;
   font-size: 2rem;
-  color: yellow;
+  color: var(--first-color);
 }
 
 .projects__data{
