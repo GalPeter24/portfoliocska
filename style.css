@@ -598,6 +598,11 @@ img {
   font-size: var(--font-medium);
 }
 
+#contact-message{
+  color: green;
+  font-weight: var(--font-semi-bold);
+}
+
 /*=============== FOOTER ===============*/
 footer{
   font-size: x-small;

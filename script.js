@@ -37,8 +37,13 @@ function moveSlide(direction) {
     slider.style.transform = `translateX(${offset}%)`;
 }
 
-function sendMessage(){
-    window.alert("Message sent")
+function sendMessage(e){
+    e.preventDefault();
+    /*window.alert("Message sent")*/
+    let box =document.getElementById("contact-message");
+    let uzenet = document.createElement("p");
+    uzenet.innerText="Message sent";
+    box.appendChild(uzenet);
 }
 
 function mode() {
