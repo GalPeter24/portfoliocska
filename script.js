@@ -49,10 +49,10 @@ function sendMessage(e){
 function mode() {
     const body = document.body;
     
-    // Hozzáadja vagy elveszi a 'light-theme' osztályt
+    // Hozzáadja/elveszi az osztályt
     body.classList.toggle('light-theme');
     
-    // Elmentjük a választást, hogy frissítés után ne ugorjon vissza
+    // Elmentjük a választást
     const isLight = body.classList.contains('light-theme');
     localStorage.setItem('theme-mode', isLight ? 'light' : 'dark');
 }
